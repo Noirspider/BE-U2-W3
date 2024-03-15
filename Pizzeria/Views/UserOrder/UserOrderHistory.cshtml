@@ -6,9 +6,9 @@
     
     <div class="divform">
 
-<p>
-    <a asp-action="Create">Cronologia Ordini</a>
-</p>
+<h4>
+  Cronologia Ordini
+</h4>
 
 <table class="table">
     <thead>
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.DataOrdine)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsEvaso)
+                        @(item.IsEvaso ? "Evaso" : "Non Ancora Evaso")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nota)

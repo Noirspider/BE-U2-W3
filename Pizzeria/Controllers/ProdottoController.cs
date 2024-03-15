@@ -105,15 +105,30 @@ namespace Pizzeria.Controllers
             return View(prodotto);
         }
 
-        // POST: Prodotto/Edit/5
+        // GET: Prodotto/
+        public async Task<IActionResult> AggiungiIngrediente(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var prodotto = await _context.Prodotti.FindAsync(id);
+            if (prodotto == null)
+            {
+                return NotFound();
+            }
+
+            var listaIngredienti = _context.Ingrediente.ToList();
+            ViewBag.ListaIngredienti = listaIngredienti;
+
+            return View(prodotto);
+        }
+
+        // POST: Prodotto/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id,
-            [Bind("IdProdotto,NomeProdotto,ImgProdotto,PrezzoProdotto,TempoConsegna")]
-                Prodotto prodotto
-        )
+        public async Task<IActionResult> Edit(int id, [Bind("IdProdotto,NomeProdotto,ImgProdotto,PrezzoProdotto,TempoConsegna")] Prodotto prodotto)
         {
             if (id != prodotto.IdProdotto)
             {
@@ -122,6 +137,9 @@ namespace Pizzeria.Controllers
 
             ModelState.Remove("Prodotto");
             ModelState.Remove("Ingrediente");
+            ModelState.Remove("ProdottiAcquistati");
+            ModelState.Remove("IngredientiAggiunti");
+            ModelState.Remove("IngredientiAggiuntiHidden");
 
             if (ModelState.IsValid)
             {
@@ -143,7 +161,20 @@ namespace Pizzeria.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(prodotto);
+            else
+            {
+                //  return BadRequest();
+                // Ottieni gli errori di validazione dal ModelState
+                var erroriValidazione = ModelState.Values.SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage);
+
+                // Costruisci un messaggio di errore che mostra il contenuto del ModelState
+                var messaggioErrore = string.Join(", ", erroriValidazione);
+
+                // Restituisci un messaggio di errore con il contenuto del ModelState
+                return BadRequest(messaggioErrore);
+
+            }
         }
 
         // GET: Prodotto/Delete/5

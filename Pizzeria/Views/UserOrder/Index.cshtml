@@ -1,4 +1,4 @@
-﻿@using Newtonsoft.Json;
+﻿﻿@using Newtonsoft.Json;
 @model IEnumerable<Pizzeria.Models.CartItem>
 @{
     ViewData["Title"] = "User Order";
@@ -6,32 +6,31 @@
 
 }
 <div class="divform">
-
 <main>
     <div class="container mb-5">
         <div class="row">
-            <div class="col-12">
+            <div class="col-7">
                 <div class="d-flex justify-content-between">
                     <h2>Menù</h2>
-                    <div>
-                        <a class="btn btn-success" asp-action="RiepilogoOrdine">Ordina</a>
-
-                    </div>
-
                 </div>
                 <hr />
-                <div id="listaProdotti" class="d-flex g-5 flex-wrap">
+                <div id="listaProdotti" class="row">
                 </div>
 
             </div>
-        </div>
-    </div>
-    <h2>Carrello</h2>
-    <hr />
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex flex-wrap">
+     
+   
+  
+            <div class="col-5">
+                <div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <h2>Carrello</h2>
+                        
 
+                        <a class="btn btn-success" asp-action="RiepilogoOrdine">Ordina</a>
+                    </div>
+                    </div>
                 <hr />
                 @{
                     if (Model != null)
@@ -42,11 +41,13 @@
                                 <img src="@item.ImgProdotto" class="img-fix card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title
-                                                                                                                                            ">
+                                                                                                                                                        ">
                                         @item.NomeProdotto
                                     </h5>
                                     <p class="card-text">@item.PrezzoProdotto €</p>
                                     <p class="card-text">Quantità: @item.Quantita </p>
+                                    
+                                 
 
                                     @foreach (var itemmino in item.IngredienteItem)
                                     {
@@ -63,14 +64,14 @@
                     }
 
                 }
-
+                    
 
             </div>
 
         </div>
     </div>
 </main>
-
+</div>
 
 @section Scripts {
     @{
@@ -87,7 +88,7 @@
                 $('#listaProdotti').empty(); // Clear the existing content
 
                 data.forEach(product => {
-                    const card = $('<div>').addClass('card me-3');
+                    const card = $('<div>').addClass('col-12 my-3 d-flex justify-content-beetween');
 
                     const img = $('<img>').attr('src', product.imgProdotto).addClass('img-fix card-img-top').attr('alt', '...');
                     card.append(img);
@@ -105,7 +106,7 @@
                     cardBody.append(price);
 
                     const buttonAdd = $('<button>').addClass('btn btn-primary').text('Add to cart');
-                    const buttonRemove = $('<button>').addClass('btn btn-danger').text('Remove ');
+                   const buttonRemove = $('<button>').addClass('btn btn-danger').text('Remove ');
 
                     buttonAdd.on('click', async function () {
                         FetchAddToCartSession(product);
@@ -156,4 +157,3 @@
     </script>
 
 }
-</div>

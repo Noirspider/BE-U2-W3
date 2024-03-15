@@ -24,6 +24,7 @@ namespace Pizzeria.Models
         public string IngredientiAggiuntiHidden { get; set; }
 
         public virtual ICollection<ProdottoAcquistato> ProdottiAcquistati { get; set; }
+
         public virtual ICollection<IngredienteAggiunto> IngredientiAggiunti { get; set; }
     }
 }
