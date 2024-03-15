@@ -105,8 +105,8 @@
                     const price = $('<p>').addClass('card-text').text(product.prezzoProdotto + ' €');
                     cardBody.append(price);
 
-                    const buttonAdd = $('<button>').addClass('btn btn-primary').text('Add to cart');
-                   const buttonRemove = $('<button>').addClass('btn btn-danger').text('Remove ');
+                    const buttonAdd = $('<button>').addClass('btn btn-primary m-1').text('Aggiungi');
+                   const buttonRemove = $('<button>').addClass('btn btn-danger').text('Rimuovi ');
 
                     buttonAdd.on('click', async function () {
                         FetchAddToCartSession(product);
