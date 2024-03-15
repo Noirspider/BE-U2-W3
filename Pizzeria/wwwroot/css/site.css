@@ -1,0 +1,49 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.img-fix{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+    #Navbar {
+      background-color: orange;
+      color: white;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    body{
+        background-image: url(../img/sfondo.webp);
+        background-size: cover;
+        background-attachment: fixed;
+
+    }
+.divform {
+    background-color: rgba(255,255,255, 0.8);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.);
+}
